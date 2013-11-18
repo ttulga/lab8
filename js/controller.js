@@ -47,7 +47,22 @@ $(function(){
 	}); //addToCart event
 
 	$('.place-order').click(function(){
-		console.log(cartModel.toJSON());
+		$.ajax({
+		    url: 'https://courses.washington.edu/info343/ajax/movies/orders/',
+		    type: 'POST',
+		    data: cartModel.toJSON(),
+		    contentType: 'application/json',
+		    success: function(responseData) {
+		        //code to run after successful post
+		        alert('Your movie(s) have been ordered!')
+		    },
+		    error: function(jqXHR, status, errorThrown) {
+		        //error with post--alert user
+		        alert(errorThrown || status);
+		    }
+		}); //ajax()
+		//clears the cart after order is placed
+		cartModel.setItems([]);
 	});
 }); //doc ready()
 
