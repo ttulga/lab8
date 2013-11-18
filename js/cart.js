@@ -10,10 +10,10 @@
 
 function createCartModel(config) {
 	var model = createListModel(config);
-	model.getTotalPrices = function() {
+	model.getTotalPrice = function() {
 		var i;
 		var totalPrice = 0;
-		for (i = 0; i<this.items.length; i++) {
+		for (i = 0; i < this.items.length; i++) {
 			totalPrice += this.items[i].price;
 		}
 		return totalPrice.toFixed(2);
@@ -22,4 +22,6 @@ function createCartModel(config) {
 	model.toJSON = function() {
 		return JSON.stringify(this.items);
 	};
+
+	return model;
 } //createCartModel()
